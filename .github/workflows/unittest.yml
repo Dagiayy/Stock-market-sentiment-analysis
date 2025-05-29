@@ -23,17 +23,23 @@ jobs:
         with:
           python-version: '3.12.3'
 
-      # Step 3: Install dependencies
+      # Step 3: Install system dependencies for TA-Lib
+      - name: Install TA-Lib System Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential
+          sudo apt-get install -y libta-lib0-dev libta-lib0
+
+      # Step 4: Install Python dependencies
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; else echo "No requirements.txt found"; fi
 
-      # Step 4: Validate Python Installation
+      # Step 5: Validate Python Installation
       - name: Verify Python Installation
         run: python --version
 
-      # Step 5: Validate Installed Libraries
+      # Step 6: Validate Installed Libraries
       - name: Verify Installed Libraries
         run: pip list
-
