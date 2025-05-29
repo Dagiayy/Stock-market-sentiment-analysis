@@ -1,0 +1,30 @@
+# Virtual environments
+venv/
+myenv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# VSCode settings
+.vscode/
+
+# Jupyter notebook checkpoints
+*.ipynb_checkpoints/
+
+# Data files
+/raw_analyst_ratings.csv
+/yfinance_data/*.csv
+
+# TA-Lib source and build
+ta-lib-0.4.0-src.tar.gz
+ta-lib/
+
+# Pyfolio library (if it's local and not installed via pip)
+pyfolio/
+
+# Mac system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
