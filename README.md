@@ -78,7 +78,7 @@ The repository follows a structured organization to ensure modularity and ease o
 #### **How to Use This Branch**
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/Week1-Challenge.git
+   git clone https://github.com/Dagiayy/Stock-market-sentiment-analysis
    cd Week1-Challenge
    ```
 
