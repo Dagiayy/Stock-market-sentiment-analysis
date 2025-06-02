@@ -23,17 +23,33 @@ jobs:
         with:
           python-version: '3.12.3'
 
-      # Step 3: Install dependencies
-      - name: Install Dependencies
+      # Step 3: Install TA-Lib from source (Linux)
+      - name: Install TA-Lib from source
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget build-essential
+          wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz
+          tar -xzf ta-lib-0.4.0-src.tar.gz
+          cd ta-lib
+          ./configure --prefix=/usr
+          make
+          sudo make install
+          cd ..
+
+      # Step 4: Install Python Dependencies (excluding ta-lib if it's in requirements.txt)
+      - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; else echo "No requirements.txt found"; fi
+          if [ -f requirements.txt ]; then \
+            grep -v '^ta-lib' requirements.txt > temp_requirements.txt && \
+            pip install -r temp_requirements.txt && \
+            rm temp_requirements.txt; \
+          else echo "No requirements.txt found"; fi
 
-      # Step 4: Validate Python Installation
+      # Step 5: Verify Python Installation
       - name: Verify Python Installation
         run: python --version
 
-      # Step 5: Validate Installed Libraries
+      # Step 6: Verify Installed Libraries
       - name: Verify Installed Libraries
         run: pip list
-
