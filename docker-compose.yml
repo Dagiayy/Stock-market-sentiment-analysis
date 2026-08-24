@@ -1,0 +1,29 @@
+services:
+  api:
+    build: .
+    image: stock-sentiment:local
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+  # One-off batch run: `docker compose run --rm pipeline`
+  pipeline:
+    build: .
+    image: stock-sentiment:local
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+    entrypoint: ["stock-sentiment"]
+    command: ["run"]
+    profiles: ["tools"]

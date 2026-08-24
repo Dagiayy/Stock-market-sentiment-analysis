@@ -1,33 +1,44 @@
 # Virtual environments
 venv/
 myenv/
+.venv/
 
-# Python cache
+# Python cache / build artifacts
 __pycache__/
 *.py[cod]
+*.egg-info/
+build/
+dist/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+htmlcov/
+.coverage
+coverage.xml
 
-# VSCode settings
+# Editors
 .vscode/
+.idea/
 
-Data/
+# Secrets / local config
+.env
+.env.*
+!.env.example
 
+# Data (raw and derived) -- never commit datasets or the DuckDB warehouse
+/data/*
+!/data/.gitkeep
+!/data/README.md
+*.duckdb
+*.duckdb.wal
 
-# Jupyter notebook checkpoints
+# Jupyter
 *.ipynb_checkpoints/
 
-# Data files
-/raw_analyst_ratings.csv
-/yfinance_data/*.csv
-
-# TA-Lib source and build
+# Legacy TA-Lib source/build (no longer a dependency, kept in case a fork restores it)
 ta-lib-0.4.0-src.tar.gz
 ta-lib/
 
-# Pyfolio library (if it's local and not installed via pip)
-pyfolio/
-
-# Mac system files
+# OS files
 .DS_Store
-
-# Windows system files
 Thumbs.db

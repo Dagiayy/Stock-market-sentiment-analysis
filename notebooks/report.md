@@ -1,7 +1,3 @@
-Here’s a complete **`final_report.md`** file that summarizes the methodology, explains key findings, and includes placeholders for plots with brief analyses. You can replace the placeholders with actual plots generated during your analysis.
-
----
-
 # **Final Report: Predicting Price Moves with News Sentiment**
 
 ## **Introduction**
